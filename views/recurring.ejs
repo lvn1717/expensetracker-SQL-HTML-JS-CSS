@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recurring</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="navbar">
+    <a href="/">Dashboard</a>
+    <a href="/analytics">Analytics</a>
+    <a href="/budgets">Budgets</a>
+    <a href="/recurring">Recurring</a>
+  </div>
+
+  <div class="container">
+    <h1>Recurring Entries</h1>
+    <ul>
+      <% recurring.forEach((item) => { %>
+        <li>
+          <strong><%= item.type %>: <%= item.category %></strong> - $<%= item.amount %>
+          every <%= item.frequency %> (From <%= item.start_date %> to <%= item.end_date %>)
+          <form action="/recurring/delete/<%= item.id %>" method="POST" style="display:inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+
+    <h2>Add Recurring Entry</h2>
+    <form action="/recurring/add" method="POST">
+      <input type="text" name="type" placeholder="Type (Income/Expense)" required>
+      <input type="text" name="category" placeholder="Category" required>
+      <input type="number" name="amount" placeholder="Amount" required>
+      <input type="text" name="frequency" placeholder="Frequency (e.g., Monthly)" required>
+      <input type="date" name="start_date" placeholder="Start Date" required>
+      <input type="date" name="end_date" placeholder="End Date">
+      <button type="submit">Add Recurring Entry</button>
+    </form>
+  </div>
+</body>
+</html>
+
+
+
+
+
+

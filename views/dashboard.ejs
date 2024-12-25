@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="navbar">
+    <a href="/">Dashboard</a>
+    <a href="/analytics">Analytics</a>
+    <a href="/budgets">Budgets</a>
+    <a href="/recurring">Recurring</a>
+  </div>
+
+  <div class="container">
+    <h1>Dashboard</h1>
+    <p><strong>Total Income:</strong> $<%= totalIncome %></p>
+    <p><strong>Total Expenses:</strong> $<%= totalExpenses %></p>
+    <p><strong>Remaining Budget:</strong> $<%= remainingBudget %></p>
+
+    <div class="dashboard-section">
+      <h2>Add Income</h2>
+      <form action="/income/add" method="POST">
+        <input type="text" name="source" placeholder="Source" required>
+        <input type="number" name="amount" placeholder="Amount" required>
+        <input type="date" name="date" required>
+        <textarea name="description" placeholder="Description"></textarea>
+        <button type="submit">Add Income</button>
+      </form>
+
+      <h2>Income List</h2>
+      <ul>
+        <% income.forEach((item) => { %>
+          <li>
+            <strong><%= item.source %>:</strong> $<%= item.amount %> on <%= item.date %> (<%= item.description %>)
+            <form action="/income/delete/<%= item.id %>" method="POST" style="display:inline;">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+
+    <div class="dashboard-section">
+      <h2>Add Expense</h2>
+      <form action="/expenses/add" method="POST">
+        <input type="text" name="category" placeholder="Category" required>
+        <input type="number" name="amount" placeholder="Amount" required>
+        <input type="date" name="date" required>
+        <textarea name="description" placeholder="Description"></textarea>
+        <button type="submit">Add Expense</button>
+      </form>
+
+      <h2>Expense List</h2>
+      <ul>
+        <% expenses.forEach((expense) => { %>
+          <li>
+            <strong><%= expense.category %>:</strong> $<%= expense.amount %> on <%= expense.date %> (<%= expense.description %>)
+            <form action="/expenses/delete/<%= expense.id %>" method="POST" style="display:inline;">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+

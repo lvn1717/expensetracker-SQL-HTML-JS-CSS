@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="navbar">
+    <a href="/">Dashboard</a>
+    <a href="/analytics">Analytics</a>
+    <a href="/budgets">Budgets</a>
+    <a href="/recurring">Recurring</a>
+  </div>
+
+  <div class="container">
+    <h1>Analytics</h1>
+    <canvas id="analyticsChart" width="400" height="200"
+      data-labels="<%= labels.join(',') %>"
+      data-income="<%= incomeValues.join(',') %>"
+      data-expenses="<%= expenseValues.join(',') %>"></canvas>
+  </div>
+
+  <script src="/chart.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
